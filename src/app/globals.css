@@ -1,26 +1,212 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Brand tokens mirrored from the Flutter app: lib/core/theme/app_colors.dart */
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* AppColors.background / surface / textPrimary / border */
+  --background: #f6f5f8;
+  --foreground: #111015;
+  --card: #ffffff;
+  --card-foreground: #111015;
+  --popover: #ffffff;
+  --popover-foreground: #111015;
+  --primary: #f5b83f;
+  --primary-foreground: #000000;
+  --secondary: #eae7f0;
+  --secondary-foreground: #111015;
+  --muted: #f0edf5;
+  --muted-foreground: #5f596b;
+  --accent: #f0edf5;
+  --accent-foreground: #111015;
+  --destructive: #ba1a1a;
+  --border: #d9d3e2;
+  --input: #d9d3e2;
+  --ring: #f5b83f;
+
+  --gold: #f5b83f;
+  --gold-dark: #e5a62e;
+  --gold-soft: #f5b83f24;
+  --ink: #0b0a0f;
+
+  --chart-1: #f5b83f;
+  --chart-2: #e5c378;
+  --chart-3: #5f596b;
+  --chart-4: #a9a3b5;
+  --chart-5: #1d1b22;
+
+  /* AppTheme uses an 18px corner radius on its primary controls */
+  --radius: 1.125rem;
+
+  --sidebar: #ffffff;
+  --sidebar-foreground: #111015;
+  --sidebar-primary: #f5b83f;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #f0edf5;
+  --sidebar-accent-foreground: #111015;
+  --sidebar-border: #d9d3e2;
+  --sidebar-ring: #f5b83f;
+}
+
+.dark {
+  /* AppColors.darkBackground / darkSurface / darkTextPrimary / darkBorder */
+  --background: #0b0a0f;
+  --foreground: #f5f3f8;
+  --card: #131118;
+  --card-foreground: #f5f3f8;
+  --popover: #131118;
+  --popover-foreground: #f5f3f8;
+  --primary: #f5b83f;
+  --primary-foreground: #000000;
+  --secondary: #1b1723;
+  --secondary-foreground: #f5f3f8;
+  --muted: #1b1723;
+  --muted-foreground: #a9a3b5;
+  --accent: #1b1723;
+  --accent-foreground: #f5f3f8;
+  --destructive: #ff6b61;
+  --border: #2f293a;
+  --input: #2f293a;
+  --ring: #f5b83f;
+
+  --gold: #f5b83f;
+  --gold-dark: #e5a62e;
+  --gold-soft: #f5b83f24;
+  --ink: #0b0a0f;
+
+  --sidebar: #131118;
+  --sidebar-foreground: #f5f3f8;
+  --sidebar-primary: #f5b83f;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #1b1723;
+  --sidebar-accent-foreground: #f5f3f8;
+  --sidebar-border: #2f293a;
+  --sidebar-ring: #f5b83f;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    /* The floating header should never cover an anchored section heading. */
+    scroll-padding-top: 7rem;
+  }
+  ::selection {
+    background-color: var(--gold);
+    color: #000000;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Soft radial gold bloom used behind the hero and the closing CTA. */
+  .brand-glow {
+    background-image: radial-gradient(
+      55% 55% at 50% 0%,
+      color-mix(in oklab, var(--gold) 26%, transparent) 0%,
+      transparent 70%
+    );
+  }
+
+  /* Faint grid used as a backdrop for dark sections. */
+  .brand-grid {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklab, var(--foreground) 6%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 64px 64px;
+    mask-image: radial-gradient(70% 60% at 50% 0%, #000 0%, transparent 100%);
+  }
+
+  /* Gold-into-foreground text gradient for the emphasised headline words. */
+  .brand-text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      var(--gold) 0%,
+      var(--gold-dark) 45%,
+      color-mix(in oklab, var(--gold) 55%, var(--foreground)) 100%
+    );
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 1px gradient hairline that fades out at both ends. */
+  .brand-hairline {
+    background-image: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in oklab, var(--gold) 45%, transparent),
+      transparent
+    );
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
