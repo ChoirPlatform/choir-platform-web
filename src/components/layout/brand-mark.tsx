@@ -1,12 +1,16 @@
+import Image from "next/image";
 import Link from "next/link";
 
 import { BRAND } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 /**
- * Wordmark. The glyph is a stylised set of staff lines with a gold note,
- * matching the app's gold-on-dark identity. Swap for the real logo asset when
- * one exists (drop it in /public/brand and render it with next/image).
+ * Wordmark: the Selah glyph (a gold "S" fused with two music notes) followed by
+ * the brand name. Same asset the Flutter app ships as its brand mark and
+ * launcher icon, so the two products read as one system.
+ *
+ * The logo carries its own gold, so it needs no tinted plate behind it — the
+ * `alt` is empty because the adjacent text already names the brand.
  */
 export function BrandMark({
   className,
@@ -23,23 +27,14 @@ export function BrandMark({
         className,
       )}
     >
-      <span className="flex size-9 items-center justify-center rounded-xl bg-gold text-black shadow-sm">
-        <svg viewBox="0 0 24 24" className="size-5" aria-hidden>
-          <path
-            d="M4 6h16M4 11h16M4 16h9"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-          <circle cx="17" cy="17" r="3" fill="currentColor" />
-          <path
-            d="M20 17V9"
-            stroke="currentColor"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-          />
-        </svg>
-      </span>
+      <Image
+        src="/brand/selah-logo.png"
+        alt=""
+        width={36}
+        height={36}
+        priority
+        className="size-9"
+      />
       <span className="text-[1.0625rem] font-bold tracking-tight">{BRAND}</span>
     </Link>
   );

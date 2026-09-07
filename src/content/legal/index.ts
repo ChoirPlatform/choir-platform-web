@@ -12,7 +12,13 @@
  * logs that include IP addresses.
  */
 
-import { BRAND, CONTACT_EMAIL, LEGAL_ENTITY, LEGAL_JURISDICTION } from "@/content/site";
+import {
+  ANDROID_PACKAGE,
+  BRAND,
+  CONTACT_EMAIL,
+  LEGAL_ENTITY,
+  LEGAL_JURISDICTION,
+} from "@/content/site";
 
 export type LegalSection = {
   heading: string;
@@ -38,7 +44,7 @@ export const PRIVACY: LegalDocument = {
     {
       heading: "Who we are",
       paragraphs: [
-        `${BRAND} is operated by ${LEGAL_ENTITY} (TODO — registered company name and address), based in ${LEGAL_JURISDICTION}. This policy covers the ${BRAND} mobile app (Android package com.choirplatform.app) and this website.`,
+        `${BRAND} is operated by ${LEGAL_ENTITY} (TODO — registered company name and address), based in ${LEGAL_JURISDICTION}. This policy covers the ${BRAND} mobile app (Android package ${ANDROID_PACKAGE}) and this website.`,
         `If you have any question about this policy, email ${CONTACT_EMAIL}.`,
       ],
     },
@@ -191,7 +197,7 @@ export const ACCOUNT_DELETION: LegalDocument = {
     {
       heading: "Which app this covers",
       paragraphs: [
-        `This page covers the ${BRAND} app, published on Google Play as com.choirplatform.app.`,
+        `This page covers the ${BRAND} app, published on Google Play as ${ANDROID_PACKAGE}.`,
       ],
     },
     {

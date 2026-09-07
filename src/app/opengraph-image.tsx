@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+
 import { ImageResponse } from "next/og";
 
 import { BRAND, TAGLINE } from "@/content/site";
@@ -8,6 +11,15 @@ export const contentType = "image/png";
 
 const GOLD = "#f5b83f";
 const INK = "#0b0a0f";
+
+/**
+ * Satori cannot fetch a relative `src`, and this route may render before the
+ * server can serve /public — so the logo is inlined as a data URI, read once
+ * at module scope rather than per request.
+ */
+const LOGO = `data:image/png;base64,${readFileSync(
+  join(process.cwd(), "public/brand/selah-logo.png"),
+).toString("base64")}`;
 
 /**
  * Social sharing card. Rendered at build time for the site root and reused as
@@ -35,28 +47,8 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 64,
-              height: 64,
-              borderRadius: 20,
-              backgroundColor: GOLD,
-            }}
-          >
-            <svg width="34" height="34" viewBox="0 0 24 24">
-              <path
-                d="M4 6h16M4 11h16M4 16h9"
-                stroke={INK}
-                strokeWidth="1.8"
-                strokeLinecap="round"
-              />
-              <circle cx="17" cy="17" r="3" fill={INK} />
-              <path d="M20 17V9" stroke={INK} strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={LOGO} width={64} height={64} alt="" />
           <div style={{ display: "flex", fontSize: 34, fontWeight: 700 }}>
             {BRAND}
           </div>

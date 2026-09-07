@@ -4,7 +4,7 @@ import { PhoneFrame } from "@/components/phone-frame";
 import { Container } from "@/components/section";
 import { StoreBadges } from "@/components/store-badges";
 import { HERO_STATS } from "@/content/features";
-import { HERO_SCREENSHOT, SCREENSHOTS } from "@/content/screenshots";
+import { HERO_SCREENSHOT, HERO_SIDE_SCREENSHOTS } from "@/content/screenshots";
 
 export function Hero() {
   return (
@@ -54,16 +54,19 @@ export function Hero() {
             slightly recessed screens on wider viewports. */}
         <div className="relative mt-20 flex items-end justify-center gap-4 sm:mt-24 sm:gap-6">
           <PhoneFrame
-            screenshot={SCREENSHOTS[2]}
+            screenshot={HERO_SIDE_SCREENSHOTS[0]}
+            sizes="192px"
             className="hidden w-48 translate-y-8 opacity-70 lg:block"
           />
           <PhoneFrame
             screenshot={HERO_SCREENSHOT}
             priority
+            sizes="(min-width: 640px) 288px, 256px"
             className="w-64 sm:w-72"
           />
           <PhoneFrame
-            screenshot={SCREENSHOTS[3]}
+            screenshot={HERO_SIDE_SCREENSHOTS[1]}
+            sizes="192px"
             className="hidden w-48 translate-y-8 opacity-70 lg:block"
           />
         </div>

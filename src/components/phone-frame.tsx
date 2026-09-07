@@ -7,6 +7,10 @@ import { cn } from "@/lib/utils";
 /**
  * Device frame for app screenshots.
  *
+ * The aspect ratio matches the captures exactly (1080x2400, i.e. 9:20) so the
+ * screen area is the same shape as the image and `object-cover` has nothing to
+ * crop. Change both together if the capture size ever changes.
+ *
  * Until a capture exists in /public/screenshots (Screenshot.ready === false)
  * the frame shows a labelled placeholder, so the layout is final and only the
  * image needs swapping in later.
@@ -14,16 +18,23 @@ import { cn } from "@/lib/utils";
 export function PhoneFrame({
   screenshot,
   priority = false,
+  sizes = "(min-width: 640px) 288px, calc(100vw - 40px)",
   className,
 }: {
   screenshot: Screenshot;
   priority?: boolean;
+  /**
+   * Rendered width of the frame, for `next/image` to pick a source from.
+   * Every caller sets this — the frames are fixed or grid-derived widths, so
+   * the default is only a fallback.
+   */
+  sizes?: string;
   className?: string;
 }) {
   return (
     <div
       className={cn(
-        "relative aspect-[9/19.5] w-full overflow-hidden rounded-[2.25rem] border border-foreground/12 bg-card p-2 shadow-2xl shadow-black/25",
+        "relative aspect-[9/20] w-full overflow-hidden rounded-[2.25rem] border border-foreground/12 bg-card p-2 shadow-2xl shadow-black/25",
         className,
       )}
     >
@@ -34,7 +45,7 @@ export function PhoneFrame({
             alt={screenshot.alt}
             fill
             priority={priority}
-            sizes="(min-width: 1024px) 320px, 70vw"
+            sizes={sizes}
             className="object-cover"
           />
         ) : (
@@ -42,11 +53,15 @@ export function PhoneFrame({
         )}
       </div>
 
-      {/* Status-bar notch */}
-      <div
-        className="absolute top-3.5 left-1/2 h-5 w-24 -translate-x-1/2 rounded-full bg-foreground/85"
-        aria-hidden
-      />
+      {/* Faux status-bar notch, for the placeholder only — a real capture
+          already contains the device's own status bar, and drawing this over
+          it would cover the clock. */}
+      {!screenshot.ready ? (
+        <div
+          className="absolute top-3.5 left-1/2 h-5 w-24 -translate-x-1/2 rounded-full bg-foreground/85"
+          aria-hidden
+        />
+      ) : null}
     </div>
   );
 }

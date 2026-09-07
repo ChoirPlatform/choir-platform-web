@@ -205,8 +205,22 @@
   }
 }
 
+/* Horizontal rails supply their own affordances (edge fade, arrows, a peeking
+   next slide), so the native scrollbar is redundant chrome under them. */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
+    scroll-behavior: auto;
+  }
+
+  /* Arrow clicks and snapping jump instead of animating. */
+  [data-scroll-rail] {
     scroll-behavior: auto;
   }
 }

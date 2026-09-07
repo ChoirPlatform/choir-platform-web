@@ -6,12 +6,14 @@
  * lyric books, and older recordings quietly disappear.
  */
 
+import { BRAND } from "@/content/site";
+
 export const ABOUT = {
   eyebrow: "About the product",
   title: "Choir music deserves better than a group chat.",
   body: [
     "Most choirs keep their music scattered across Telegram threads, PDFs, USB sticks, shared Drive folders and a printed lyric book that only one person has. Songs get hard to find, new members struggle to learn the repertoire, and the recordings that made the choir what it is slowly disappear.",
-    `${"Choir Platform"} was built for that problem specifically. It is not a streaming service with a choir skin on top — it is a library, a rehearsal tool and an archive designed around how choirs actually work: rehearse, perform, preserve, repeat.`,
+    `${BRAND} was built for that problem specifically. It is not a streaming service with a choir skin on top — it is a library, a rehearsal tool and an archive designed around how choirs actually work: rehearse, perform, preserve, repeat.`,
   ],
 } as const;
 
@@ -28,7 +30,7 @@ export const BEFORE_AFTER = {
     ],
   },
   after: {
-    title: `With Choir Platform`,
+    title: `With ${BRAND}`,
     items: [
       "One searchable library the whole choir shares",
       "Chords stored with the song and transposable on the spot",

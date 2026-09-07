@@ -6,7 +6,7 @@
  * before the Google Play listing goes live.
  */
 
-export const BRAND = "Choir Platform";
+export const BRAND = "Selah";
 
 export const TAGLINE = "Every song your choir has ever sung, in one place.";
 
@@ -21,18 +21,20 @@ export const DESCRIPTION =
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3001";
 
-/** Play Store listing for the shipped Flutter app (applicationId com.choirplatform.app). */
-export const ANDROID_PACKAGE = "com.choirplatform.app";
+/** Play Store listing for the shipped Flutter app (applicationId com.selah.app). */
+export const ANDROID_PACKAGE = "com.selah.app";
 export const PLAY_STORE_URL = `https://play.google.com/store/apps/details?id=${ANDROID_PACKAGE}`;
 
 /** Set NEXT_PUBLIC_APP_STORE_URL to turn the "Coming to iOS" badge into a real link. */
 export const APP_STORE_URL = process.env.NEXT_PUBLIC_APP_STORE_URL ?? null;
 
 // TODO: replace with the real support inbox before submitting to Google Play.
-export const CONTACT_EMAIL = "support@choirplatform.app";
+// selah.app is not a registered domain yet — this is a placeholder, not a
+// working address.
+export const CONTACT_EMAIL = "support@selah.app";
 
 // TODO: replace with the registered legal entity and jurisdiction.
-export const LEGAL_ENTITY = "Choir Platform";
+export const LEGAL_ENTITY = "Selah";
 export const LEGAL_JURISDICTION = "TODO — jurisdiction";
 
 export const NAV_LINKS = [

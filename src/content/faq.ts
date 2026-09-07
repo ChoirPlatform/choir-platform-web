@@ -3,6 +3,8 @@
  * No pricing question while pricing is out of scope.
  */
 
+import { BRAND } from "@/content/site";
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -10,7 +12,7 @@ export type FaqItem = {
 
 export const FAQ: FaqItem[] = [
   {
-    question: "What is Choir Platform?",
+    question: `What is ${BRAND}?`,
     answer:
       "A mobile app for choirs to store, organise and rehearse their music. Songs, albums, lyrics, chords, announcements and events live in one shared library that your whole choir can reach — on stage, in rehearsal, or offline.",
   },
